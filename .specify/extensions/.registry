@@ -10,6 +10,9 @@
       "registered_commands": {
         "claude": [
           "speckit.agent-context.update"
+        ],
+        "codex": [
+          "speckit.agent-context.update"
         ]
       },
       "registered_skills": [],
@@ -23,6 +26,11 @@
       "priority": 10,
       "registered_commands": {
         "claude": [
+          "speckit.bug.assess",
+          "speckit.bug.fix",
+          "speckit.bug.test"
+        ],
+        "codex": [
           "speckit.bug.assess",
           "speckit.bug.fix",
           "speckit.bug.test"
@@ -44,6 +52,13 @@
           "speckit.git.remote",
           "speckit.git.initialize",
           "speckit.git.commit"
+        ],
+        "codex": [
+          "speckit.git.feature",
+          "speckit.git.validate",
+          "speckit.git.remote",
+          "speckit.git.initialize",
+          "speckit.git.commit"
         ]
       },
       "registered_skills": [],
@@ -60,6 +75,11 @@
           "speckit.worktrees.create",
           "speckit.worktrees.list",
           "speckit.worktrees.clean"
+        ],
+        "codex": [
+          "speckit.worktrees.create",
+          "speckit.worktrees.list",
+          "speckit.worktrees.clean"
         ]
       },
       "registered_skills": [],
@@ -73,6 +93,13 @@
       "priority": 10,
       "registered_commands": {
         "claude": [
+          "speckit.harness.init",
+          "speckit.harness.explore",
+          "speckit.harness.verify",
+          "speckit.harness.status",
+          "speckit.harness.report"
+        ],
+        "codex": [
           "speckit.harness.init",
           "speckit.harness.explore",
           "speckit.harness.verify",
@@ -95,6 +122,12 @@
           "speckit.spectest.coverage",
           "speckit.spectest.gaps",
           "speckit.spectest.plan"
+        ],
+        "codex": [
+          "speckit.spectest.generate",
+          "speckit.spectest.coverage",
+          "speckit.spectest.gaps",
+          "speckit.spectest.plan"
         ]
       },
       "registered_skills": [],
@@ -108,6 +141,12 @@
       "priority": 10,
       "registered_commands": {
         "claude": [
+          "speckit.changelog.generate",
+          "speckit.changelog.release",
+          "speckit.changelog.diff",
+          "speckit.changelog.notify"
+        ],
+        "codex": [
           "speckit.changelog.generate",
           "speckit.changelog.release",
           "speckit.changelog.diff",

@@ -1,0 +1,28 @@
+# Changes here will be overwritten by `copier update` — NEVER EDIT MANUALLY.
+# This file records the answers used to scaffold the project so the template
+# can be re-applied later.  Keep it committed.
+_commit: d8b7cd1
+_src_path: gh:galax-io/spec-kit-galaxio-bootstrap
+architecture: Argentina.modinfo registers load actions; SQL/XML populates the game
+    database; localization, optional Lua, and art assets reference stable database
+    identifiers.
+build_test_cmd: git diff --check
+commands: git status --short; git diff --check
+dep_manifest: Argentina.modinfo
+do_git: false
+org_repo: jigarkhwar/civilization_VI_argentina
+project_name: Civilization VI Argentina
+project_tagline: A Civilization VI mod adding Argentina as a playable civilization.
+publish_mechanism: GitHub Release ZIP plus manual ModBuddy publication to Steam Workshop
+release_notes_tool: GitHub-generated release notes
+role: Maintainer of the Civilization VI Argentina mod; preserve stable identifiers,
+    expansion compatibility, and save behavior.
+run_speckit: false
+stack: generic
+stack_detail: 'Civilization VI data mod: SQL/XML for gameplay and localization, Lua/XML
+    for behavior and UI, DDS and art definitions for assets; Spec Kit and Bash for
+    workflow tooling.'
+structure: Gameplay, Text, UI, and Art contain mod content; specs and .specify contain
+    the Spec Kit workflow.
+test_model: Validate syntax and SQL offline when practical, then test in a new in-game
+    save and inspect Database.log, Modding.log, and Lua.log.

@@ -23,7 +23,7 @@ git diff --check
 rg "CIVILIZATION_ARGENTINA|LEADER_|ARG_" Gameplay Text UI
 ```
 
-No automated game build or test runner exists yet. Add repeatable validation and packaging behind root-level commands such as `make validate` and `make package` when the first gameplay files are introduced.
+GitHub Actions runs shell syntax and ShellCheck plus JSON, YAML, XML/`.modinfo`, Lua, and workflow validation for every pull request. No automated game build or gameplay test runner exists yet.
 
 ## Structure
 
@@ -75,20 +75,19 @@ Validate XML syntax and run SQL against a disposable Civilization VI-compatible 
 
 ## Versioning & Releases
 
-Every merged `fix` or `feat` produces a new release. Use semantic versioning for Git tags and GitHub Releases:
+Every merged `fix` or `feat` on `main` produces a release after CI succeeds. The workflow derives semantic versions from Conventional Commit subjects and creates an installable ZIP, a Git tag, and a GitHub Release:
 
 - `fix` increments the patch version: `v1.2.0` → `v1.2.1`.
 - `feat` increments the minor version: `v1.2.1` → `v1.3.0`.
 - A breaking change increments the major version: `v1.3.0` → `v2.0.0`.
-- Documentation and workflow-only changes do not require a release unless explicitly requested.
+- `feat!`, `fix!`, or a `BREAKING CHANGE:` footer increments the major version.
+- Other commit types do not produce a release.
 
-Release directly from `main`; do not create release branches.
+Tag names must match `vX.Y.Z`. Release directly from `main`; do not create release branches or tags manually.
 
-1. Merge one validated fix or feature PR into `main`.
-2. Use `v0.1.0` for the first release; afterward, determine the next version from the latest `vX.Y.Z` tag.
-3. Update the mod version in `Argentina.modinfo` once the manifest exists.
-4. Create and push the new tag on the merge commit.
-5. Publish an installable ZIP as a GitHub Release.
-6. Publish the same version to Steam Workshop through ModBuddy when applicable.
+1. Merge one validated fix or feature PR into `main` using a Conventional Commit title.
+2. CI uses `v0.1.0` for the first release and increments the latest stable tag afterward.
+3. CI requires `Argentina.modinfo`, packages runtime content, tags the merge commit, and publishes generated release notes.
+4. Publish the same version to Steam Workshop through ModBuddy when applicable.
 
 Tags belong only on `main`. Never delete a published tag or reuse a version number. A release must contain exactly the fix or feature represented by its PR plus any required version metadata.

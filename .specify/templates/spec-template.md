@@ -87,21 +87,49 @@
 
 ### Functional Requirements
 
-- **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
-- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]
-- **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
-- **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
-- **FR-005**: System MUST [behavior, e.g., "log all security events"]
+- **FR-001**: Mod MUST [specific player-visible capability, e.g., "make Argentina selectable"]
+- **FR-002**: Mod MUST [gameplay rule, e.g., "apply the leader trait to eligible units"]
+- **FR-003**: Players MUST be able to [key interaction, e.g., "inspect the trait in Civilopedia"]
+- **FR-004**: Mod MUST [cross-layer contract, e.g., "register every gameplay file in the manifest"]
+- **FR-005**: Mod MUST [localization requirement, e.g., "resolve every displayed text key"]
 
 *Example of marking unclear requirements:*
 
-- **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
-- **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
+- **FR-006**: Mod MUST apply the trade bonus to [NEEDS CLARIFICATION: domestic routes,
+  international routes, or both?]
+- **FR-007**: Mod MUST apply [NEEDS CLARIFICATION: exact bonus value and qualifying conditions?]
+
+### Compatibility Requirements *(mandatory)*
+
+- **COMP-001**: Supported Civilization VI game version: [version or NEEDS CLARIFICATION]
+- **COMP-002**: Supported expansions and rulesets: Rise and Fall plus Gathering Storm; no other DLC
+- **COMP-003**: Existing database identifiers affected: [None or exact identifiers]
+- **COMP-004**: Save compatibility impact: [None, compatible migration, or documented break]
+- **COMP-005**: Player-visible gameplay impact: [None or exact behavior and approval status]
+- **COMP-006**: Manifest, localization, UI, and art contracts affected: [None or exact keys/files]
+- **COMP-007**: Dependencies or custom asset pipelines: [None, or approved repository-owned asset
+  work; external DLC beyond Rise and Fall and Gathering Storm is prohibited]
 
 ### Key Entities *(include if feature involves data)*
 
-- **[Entity 1]**: [What it represents, key attributes without implementation]
-- **[Entity 2]**: [What it represents, relationships to other entities]
+- **[Civilization/Leader/Trait]**: [What it represents and its player-visible attributes]
+- **[Unit/Building/Modifier]**: [Its gameplay role and relationships to other database objects]
+
+## Validation Evidence *(mandatory)*
+
+- **Static validation**: [required syntax, schema, identifier, and workflow checks]
+- **In-game scenarios**: [setup, Civilopedia, localization, mechanic, UI/art checks, or N/A with reason]
+- **Logs to inspect**: [Database.log, Modding.log, Lua.log, or N/A with reason]
+- **Persistence**: [new-save and save/reload checks, or N/A with reason]
+- **Review evidence**: [tested game version, enabled expansions, screenshots for UI/art, manual follow-up]
+
+## Historical and Gameplay Differentiation *(mandatory for civilization content)*
+
+- **Historical basis**: [claim, source, and reason this subject belongs in the design]
+- **Closest existing implementation**: [comparison from docs/DesignDifferentiation.md]
+- **Deliberate overlap**: [shared names, leaders, themes, triggers, or None]
+- **Distinct player loop**: [different inputs, decisions, outputs, timing, and counterplay]
+- **Balance hypothesis**: [power budget, caps, opportunity costs, and base-game comparison target]
 
 ## Success Criteria *(mandatory)*
 
@@ -112,10 +140,10 @@
 
 ### Measurable Outcomes
 
-- **SC-001**: [Measurable metric, e.g., "Users can complete account creation in under 2 minutes"]
-- **SC-002**: [Measurable metric, e.g., "System handles 1000 concurrent users without degradation"]
-- **SC-003**: [User satisfaction metric, e.g., "90% of users successfully complete primary task on first attempt"]
-- **SC-004**: [Business metric, e.g., "Reduce support tickets related to [X] by 50%"]
+- **SC-001**: [Player outcome, e.g., "Argentina can be selected in every supported ruleset"]
+- **SC-002**: [Mechanic outcome, e.g., "The bonus applies exactly once under each qualifying condition"]
+- **SC-003**: [Compatibility outcome, e.g., "A save reload preserves all feature state"]
+- **SC-004**: [Quality outcome, e.g., "All referenced text keys render in supported locales"]
 
 ## Assumptions
 
@@ -125,7 +153,7 @@
   chosen when the feature description did not specify certain details.
 -->
 
-- [Assumption about target users, e.g., "Users have stable internet connectivity"]
-- [Assumption about scope boundaries, e.g., "Mobile support is out of scope for v1"]
-- [Assumption about data/environment, e.g., "Existing authentication system will be reused"]
-- [Dependency on existing system/service, e.g., "Requires access to the existing user profile API"]
+- [Assumption about supported game version and expansions]
+- [Assumption about scope boundaries, e.g., "Custom 3D assets are out of scope"]
+- [Assumption about existing identifiers, saves, and localization coverage]
+- [Dependency on a base-game table, modifier type, UI context, or referenced asset]

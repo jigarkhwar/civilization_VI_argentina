@@ -8,9 +8,25 @@ Civilization VI mod that adds Argentina as a playable civilization. Gameplay com
 
 Maintain the Argentina mod with small, reversible changes. Prefer Civilization VI's database and modifier systems over custom Lua, reuse base-game assets until custom art is justified, and document assumptions about supported expansions.
 
+## Design Differentiation
+
+Review `docs/DesignDifferentiation.md` before specifying a civilization, leader, or unique
+component. Its Workshop comparisons are soft guardrails, not a blacklist: historically justified
+names and themes may recur, but proposals must document the overlap, create a materially different
+player loop, and explain the balance tradeoff. Prefer Manuel Belgrano for the initial leader unless
+a specification demonstrates a stronger historical and mechanical case.
+
 ## Stack
 
 Gameplay and localization use SQL/XML; custom behavior and UI use Lua/XML; visual assets use DDS and Civilization VI art-definition formats. `Argentina.modinfo` is the mod manifest and load-order entry point. Project workflow tooling consists of GitHub Spec Kit, Copier, Bash, `gh`, and `jq`.
+
+## Supported Content
+
+The mod targets the current Civilization VI release with both **Rise and Fall** and **Gathering
+Storm** enabled. It must not require the Babylon Pack, New Frontier Pass, Leader Pass, or any other
+leader, civilization, scenario, or content pack. Runtime definitions and referenced assets must
+come from the base game, Rise and Fall, Gathering Storm, or this repository. Validate gameplay with
+both supported expansions enabled; do not claim base-game-only or single-expansion compatibility.
 
 ## Commands
 
@@ -57,7 +73,7 @@ Validate XML syntax and run SQL against a disposable Civilization VI-compatible 
 
 ## Boundaries
 
-**Always:** branch from `main`, keep commits focused and green, preserve stable database identifiers, and maintain compatibility with declared Civilization VI expansions. `Argentina.modinfo` is the gameplay load-order and compatibility truth once added.
+**Always:** branch from `main`, keep commits focused and green, preserve stable database identifiers, and maintain compatibility with Rise and Fall plus Gathering Storm. `Argentina.modinfo` is the gameplay load-order and compatibility truth once added.
 
 **Ask first:** new dependencies or upgrades, changes to supported expansions, observable gameplay or serialized-data behavior, editing another repository, custom 3D/audio pipeline work, and release or publishing workflow changes.
 

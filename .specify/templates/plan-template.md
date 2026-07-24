@@ -18,29 +18,43 @@
   the iteration process.
 -->
 
-**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]
+**Languages/Formats**: [SQL, XML, Lua, DDS/art definitions, or N/A]
 
-**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]
+**Civilization VI Systems**: [database tables, modifiers, events, UI contexts, or NEEDS CLARIFICATION]
 
-**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]
+**Game/Expansion Baseline**: [current game version; Rise and Fall + Gathering Storm required;
+no other DLC]
 
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]
+**Manifest/Load Order**: [affected Argentina.modinfo actions and ordering, or N/A]
 
-**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
+**Validation**: [static checks, disposable database checks, in-game scenarios, logs, save/reload]
 
-**Project Type**: [e.g., library/cli/web-service/mobile-app/compiler/desktop-app or NEEDS CLARIFICATION]
+**Target Platform**: [Civilization VI platform/build and ModBuddy requirements]
 
-**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]
+**Compatibility-Sensitive IDs**: [existing IDs touched, or None]
 
-**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]
+**Player/Save Impact**: [observable gameplay or serialized-state impact, approval status, or None]
 
-**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
+**Assets/Dependencies**: [base game, Rise and Fall, Gathering Storm, or repository assets only;
+new dependencies require approval]
+
+**Alternative-Mod Comparison**: [closest baseline from docs/DesignDifferentiation.md, deliberate
+overlap, mechanical difference, and balance tradeoff]
 
 ## Constitution Check
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- **Compatibility and saves**: PASS only when game/expansion assumptions, stable identifiers,
+  player-visible behavior, and save impact are declared; approval is recorded where required.
+- **Native systems first**: PASS only when standard database tables and `Modifiers` are used where
+  capable; every Lua, custom UI, dependency, or custom asset choice documents the native option gap.
+- **Cross-layer integrity**: PASS only when manifest actions, load order, identifiers, localization,
+  art links, and layer ownership are mapped for every affected runtime file.
+- **Validation includes the game**: PASS only when applicable static checks and concrete in-game
+  scenarios cover setup, Civilopedia, localization, mechanics, logs, and save/reload behavior.
+- **Focused and reversible**: PASS only when the plan represents one coherent change and records
+  every constitutional exception in Complexity Tracking.
 
 ## Project Structure
 
@@ -65,39 +79,14 @@ specs/[###-feature]/
 -->
 
 ```text
-# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
-src/
-├── models/
-├── services/
-├── cli/
-└── lib/
-
-tests/
-├── contract/
-├── integration/
-└── unit/
-
-# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
-backend/
-├── src/
-│   ├── models/
-│   ├── services/
-│   └── api/
-└── tests/
-
-frontend/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   └── services/
-└── tests/
-
-# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
-api/
-└── [same as backend above]
-
-ios/ or android/
-└── [platform-specific structure: feature modules, UI flows, platform tests]
+Argentina.modinfo
+Gameplay/
+Text/
+├── en_US/
+└── ru_RU/
+UI/
+Art/
+Tests/
 ```
 
 **Structure Decision**: [Document the selected structure and reference the real
@@ -109,5 +98,5 @@ directories captured above]
 
 | Violation | Why Needed | Simpler Alternative Rejected Because |
 |-----------|------------|-------------------------------------|
-| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
-| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
+| [e.g., event-driven Lua mechanic] | [native-system capability gap] | [why Modifiers cannot express it] |
+| [e.g., identifier replacement] | [required compatibility change] | [why the shipped ID cannot remain] |
